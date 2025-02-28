@@ -1,7 +1,7 @@
 ### your site title here
 
 title: Lucy Ham 
-description: subtitle | affiliations | motto
+description: Posdoc | The University of Melbourne 
 
 baseurl: /gradfolio #name of GitHub repository
 url: "https://leham.au" #custom url to be used instead of GitHub repository
@@ -13,7 +13,7 @@ permalink: /blog/:year/:title/
 paginate_path: /blog/page:num/
 
 # Social media links in footer
-linkedin: "#"
+linkedin: "https://www.linkedin.com/in/lucy-ham-6a72283b/"
 stackoverflow: "#"
 github: "#"
 researchgate: "#"
