@@ -11,24 +11,28 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      # Use GitHub Actions' cache to cache dependencies
-      - uses: actions/cache@v3
+      # Cache Ruby Gems
+      - name: Cache Gems
+        uses: actions/cache@v3
         with:
-          path: |
-            vendor/bundle
-          key: ${{ runner.os }}-cache-${{ hashFiles('**/Gemfile.lock') }}
+          path: vendor/bundle
+          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
           restore-keys: |
-            ${{ runner.os }}-cache-
+            ${{ runner.os }}-gems-
 
-      # Install Ruby, Bundler, and Jekyll dependencies
-      - name: Install Ruby and Bundler
+      # Install Ruby using setup-ruby action
+      - name: Install Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.2  # Ensure compatibility with GitHub Actions
+          bundler-cache: true # Caches gems automatically
+
+      # Install Dependencies
+      - name: Install Bundler and Jekyll
         run: |
-          sudo apt-get update
-          sudo apt-get install -y ruby-full
-          gem install bundler
           bundle install
 
-      # Use GitHub Deploy Action to build and deploy Jekyll
+      # Deploy Jekyll Site
       - uses: jeffreytse/jekyll-deploy-action@v0.6.0
         with:
           provider: 'github'
