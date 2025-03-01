@@ -7,7 +7,7 @@ baseurl: /gradfolio #name of GitHub repository
 url: "https://leham.au" #custom url to be used instead of GitHub repository
 email: #
 
-theme: jekyll-theme-minimal
+
 
 # Pagination
 paginate: 4
