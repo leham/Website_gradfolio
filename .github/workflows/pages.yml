@@ -10,6 +10,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      
+   # Remove Old Bundler Cache to Avoid Conflicts
+      - name: Remove old Bundler cache
+        run: rm -rf vendor/bundle .bundle
+
+     - name: Disable Bundler Frozen Mode
+        run: bundle config set frozen false
+
 
       # Cache Ruby Gems
       - name: Cache Gems
@@ -27,8 +35,7 @@ jobs:
           ruby-version: 3.2  # Ensure compatibility with GitHub Actions
           bundler-cache: true # Caches gems automatically
 
-       - name: Disable Bundler Frozen Mode
-        run: bundle config set frozen false
+     
 
       # Install Dependencies
       - name: Install Bundler and Jekyll
