@@ -9,15 +9,16 @@ jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      
-   # Remove Old Bundler Cache to Avoid Conflicts
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Remove Old Bundler Cache to Avoid Conflicts
       - name: Remove old Bundler cache
         run: rm -rf vendor/bundle .bundle
 
-     - name: Disable Bundler Frozen Mode
+      # Disable Bundler Frozen Mode
+      - name: Disable Bundler Frozen Mode
         run: bundle config set frozen false
-
 
       # Cache Ruby Gems
       - name: Cache Gems
@@ -35,15 +36,13 @@ jobs:
           ruby-version: 3.2  # Ensure compatibility with GitHub Actions
           bundler-cache: true # Caches gems automatically
 
-     
-
       # Install Dependencies
       - name: Install Bundler and Jekyll
-        run: |
-          bundle install
+        run: bundle install --jobs 4 --retry 3
 
       # Deploy Jekyll Site
-      - uses: jeffreytse/jekyll-deploy-action@v0.6.0
+      - name: Deploy Jekyll Site
+        uses: jeffreytse/jekyll-deploy-action@v0.6.0
         with:
           provider: 'github'
           token: ${{ secrets.GITHUB_TOKEN }}
