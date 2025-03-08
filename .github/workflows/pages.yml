@@ -27,6 +27,9 @@ jobs:
           ruby-version: 3.2  # Ensure compatibility with GitHub Actions
           bundler-cache: true # Caches gems automatically
 
+       - name: Disable Bundler Frozen Mode
+        run: bundle config set frozen false
+
       # Install Dependencies
       - name: Install Bundler and Jekyll
         run: |
