@@ -12,14 +12,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      # Remove Old Bundler Cache to Avoid Conflicts
-      #- name: Remove old Bundler cache
-      #  run: rm -rf vendor/bundle .bundle
-
-      # Disable Bundler Frozen Mode
-      - name: Disable Bundler Frozen Mode
-        run: bundle config set frozen false
-
       # Cache Ruby Gems
       - name: Cache Gems
         uses: actions/cache@v3
@@ -39,6 +31,14 @@ jobs:
       # Install Dependencies
       - name: Install Bundler and Jekyll
         run: bundle install --jobs 4 --retry 3
+
+      # Remove Old Bundler Cache to Avoid Conflicts
+      #- name: Remove old Bundler cache
+      #  run: rm -rf vendor/bundle .bundle
+
+      # Disable Bundler Frozen Mode
+      - name: Disable Bundler Frozen Mode
+        run: bundle config set frozen false
 
       # Deploy Jekyll Site
       - name: Deploy Jekyll Site
