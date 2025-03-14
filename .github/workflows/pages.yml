@@ -21,13 +21,6 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gems-
 
-      # Install Ruby using setup-ruby action
-      - name: Install Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: 3.2  # Ensure compatibility with GitHub Actions
-          bundler-cache: true # Caches gems automatically
-
       # Install Dependencies
       - name: Install Bundler and Jekyll
         run: bundle install --jobs 4 --retry 3
@@ -39,7 +32,14 @@ jobs:
       # Disable Bundler Frozen Mode
       - name: Disable Bundler Frozen Mode
         run: bundle config set frozen false
-
+        
+      # Install Ruby using setup-ruby action
+      - name: Install Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.2  # Ensure compatibility with GitHub Actions
+          bundler-cache: true # Caches gems automatically
+          
       # Deploy Jekyll Site
       - name: Deploy Jekyll Site
         uses: jeffreytse/jekyll-deploy-action@v0.6.0
