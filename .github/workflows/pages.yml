@@ -13,8 +13,8 @@ jobs:
         uses: actions/checkout@v3
 
       # Remove Old Bundler Cache to Avoid Conflicts
-      - name: Remove old Bundler cache
-        run: rm -rf vendor/bundle .bundle
+      #- name: Remove old Bundler cache
+      #  run: rm -rf vendor/bundle .bundle
 
       # Disable Bundler Frozen Mode
       - name: Disable Bundler Frozen Mode
