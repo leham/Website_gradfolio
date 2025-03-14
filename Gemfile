@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'bundler'
+gem 'bundle'
 gem 'jekyll'
 
 gem "jekyll-theme-minimal", "~> 0.2.0"
